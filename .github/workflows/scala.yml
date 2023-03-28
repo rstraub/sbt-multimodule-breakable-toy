@@ -22,7 +22,9 @@ jobs:
                   java-version: '17'
                   distribution: 'temurin'
                   cache: 'sbt'
-            - name: Run tests
+            - name: Run Tests
               run: sbt test
-            - name: Run scalastyle
+            - name: Run Scalastyle
               run: sbt scalastyle
+            - name: Run Scalafmt
+              run: sbt scalafmtCheckAll
