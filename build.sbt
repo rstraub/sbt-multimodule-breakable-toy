@@ -19,7 +19,8 @@ lazy val root = project
 
 // If the name of the module matches the val, this suffices
 lazy val domain = project
-    .settings(name := "multimodule-domain")
-    .dependsOn(core)
+  .settings(name := "multimodule-domain")
+  // This adds a dependency on the core module, as well as its test sources
+  .dependsOn(core % "compile->compile;test->test")
 lazy val core = project
-    .settings(name := "multimodule-core")
+  .settings(name := "multimodule-core")
