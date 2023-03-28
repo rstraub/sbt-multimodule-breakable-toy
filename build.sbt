@@ -20,5 +20,6 @@ lazy val root = project
 // If the name of the module matches the val, this suffices
 lazy val domain = project
     .settings(name := "multimodule-domain")
+    .dependsOn(core)
 lazy val core = project
     .settings(name := "multimodule-core")
