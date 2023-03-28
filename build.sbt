@@ -11,10 +11,17 @@ lazy val commonDependencies = Seq(
   mockito % Test
 )
 
+// These settings apply to all submodules
+lazy val commonSettings = Seq(
+  // Exclude tagged tests from the build
+  Test / testOptions := Seq(Tests.Argument("-l", "nl.codecraftr.sbt.multimodule.core.WIP")),
+  libraryDependencies ++= commonDependencies
+)
+
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "multimodule-breakable-toy"
+    name := "multimodule-breakable-toy",
   )
   // This causes tasks on the root to be executed on submodules
   .aggregate(core, domain)
@@ -23,7 +30,7 @@ lazy val root = project
 lazy val domain = project
   .settings(
     name := "multimodule-domain",
-    libraryDependencies ++= commonDependencies
+    commonSettings
   )
   // This adds a dependency on the core module, as well as its test sources
   .dependsOn(core % "compile->compile;test->test")
@@ -31,5 +38,5 @@ lazy val domain = project
 lazy val core = project
   .settings(
     name := "multimodule-core",
-    libraryDependencies ++= commonDependencies
+    commonSettings
   )
