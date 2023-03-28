@@ -25,4 +25,4 @@ jobs:
             - name: Run tests
               run: sbt test
             - name: Run scalastyle
-              run: sbt scalaStyle
+              run: sbt scalastyle
