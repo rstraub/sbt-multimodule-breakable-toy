@@ -1,13 +1,15 @@
 import Dependencies._
-import sbt.Keys.libraryDependencies
 
 // These settings apply to all submodules
 ThisBuild / organization := "nl.codecraftr"
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / scalaVersion := "2.13.10"
+
 // These dependencies apply to all submodules
-ThisBuild / libraryDependencies += scalaTest % Test
-ThisBuild / libraryDependencies += mockito % Test
+lazy val commonDependencies = Seq(
+  scalaTest % Test,
+  mockito % Test
+)
 
 lazy val root = project
   .in(file("."))
@@ -19,8 +21,15 @@ lazy val root = project
 
 // If the name of the module matches the val, this suffices
 lazy val domain = project
-  .settings(name := "multimodule-domain")
+  .settings(
+    name := "multimodule-domain",
+    libraryDependencies ++= commonDependencies
+  )
   // This adds a dependency on the core module, as well as its test sources
   .dependsOn(core % "compile->compile;test->test")
+
 lazy val core = project
-  .settings(name := "multimodule-core")
+  .settings(
+    name := "multimodule-core",
+    libraryDependencies ++= commonDependencies
+  )

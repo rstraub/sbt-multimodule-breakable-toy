@@ -23,4 +23,6 @@ jobs:
                   distribution: 'temurin'
                   cache: 'sbt'
             - name: Run tests
-              run: sbt test scalafmtCheckAll
+              run: sbt test
+            - name: Run scalastyle
+              run: sbt scalaStyle
