@@ -1,11 +1,11 @@
-package nl.codecraftr.scala.kata
+package nl.codecraftr.sbt.multimodule.core
 
 import org.scalatest.BeforeAndAfter
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
 
-class CanarySpec
+class CoreSpec
     extends AnyWordSpec
     with Matchers
     with MockitoSugar
@@ -15,7 +15,7 @@ class CanarySpec
     println("fires before every test")
   }
 
-  "canary" should {
+  "core" should {
     "run tests" in {
       true shouldBe true
     }
